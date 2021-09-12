@@ -12,15 +12,15 @@ public class DiagonalDifference {
                 arrN[i][j] = scan.nextInt();
             }
         }
-        di(arrN);
+        System.out.println(di(arrN));
     }
-    public static void di(int[][] arr){
+    public static int di(int[][] arr){
         List<Integer> first = new ArrayList<>();
         List<Integer> second = new ArrayList<>();
         int i  = 0 ;
         int j  = 0;
         int xx = 0;
-        int yy = 0;
+        
         for (int j2 = 0; j2 < arr.length; j2++) {
             for (int k = 0; k <= j2; k++) {
                 if(k == xx){
@@ -30,29 +30,35 @@ public class DiagonalDifference {
                 }
             }
         }
+        
         for (int j2 = arr.length-1; j2 >= 0; j2--) {
-            System.out.println("baris" + j2);
+            int yy = arr.length-1;
             for (int k = 0; k <= j2; k++) {
-                System.out.println("Nilai yy" + yy + " Nilai K " + k + "Nilai j2 = " + j2);
-
-                if(k == yy){
+                if(k != j2){
+                    yy = yy - 1;
+                }else{
                     second.add(arr[j2][yy]);
-                    yy++;
-                    break;
                 }
                 
             }
         }
-        for (Integer integer : second) {
-            System.out.print(integer);
+   
+        int sumFirst = 0;
+        int sumSecond = 0;
+        int end = 0;
+        for (int k = 0; k < first.size(); k++) {
+            sumFirst = sumFirst + first.get(k);
         }
-
-        
-    }
-    public static int DiagonalDifference(List<List<Integer>> arr){
-        
-        
-        return 0;
-        
+        for (int k = 0; k < arr.length; k++) {
+            sumSecond = sumSecond + second.get(k);
+        }
+        if(sumSecond < sumFirst){
+            end = sumFirst - sumSecond;
+        }else if(sumSecond > sumFirst){
+            end = sumSecond - sumFirst;
+        }else{
+            end = sumSecond - sumFirst;
+        } 
+        return end;
     }
 }
