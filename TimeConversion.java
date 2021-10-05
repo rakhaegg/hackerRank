@@ -21,14 +21,11 @@ public class TimeConversion {
             //TODO: handle exception
             e.printStackTrace();
         }
-      
     }
     public static String timeConversion(String s){
         String typeTime = null;
         String cnvv = null;
-        
         HashMap<String, String> capitalCities = new HashMap<String, String>();
-
         capitalCities.put("01", "13");
         capitalCities.put("02", "14");
         capitalCities.put("03", "15");
@@ -42,25 +39,21 @@ public class TimeConversion {
         capitalCities.put("11", "23");
         capitalCities.put("12", "12");
         String nnn = null;
-
-        
-        
-
         if(s.charAt(8) == 'P' ){
             typeTime = "PM";
             String[] first = s.split(":");
             nnn = first[0];
             String gantinya= null;
-
             for (Map.Entry<String, String> set :capitalCities.entrySet()) {
                 if(nnn.equalsIgnoreCase(set.getKey())){
                     gantinya =  set.getValue();
                     break;
+                }else{
+                    continue;
                 }
               }
             String acnvv = s.substring(0, s.length()-1  );
             String aacnvv = acnvv.substring(0, s.length()-2);
-            //cnvv = gantinya;
             cnvv = aacnvv.replaceFirst(nnn, gantinya);
         }else{
             String[] first = s.split(":");
@@ -71,9 +64,7 @@ public class TimeConversion {
             }else{
                 cnvv = s.replaceAll("([A-M])", ""); 
             }   
-       
         }
-
         return cnvv;
     }    
 }

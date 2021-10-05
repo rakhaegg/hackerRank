@@ -1,85 +1,108 @@
 package DataStruct.LinkedList;
 
-import java.util.Scanner;
 
-import DataStruct.LinkedList.printLinkedList.SinglyLinkedList;
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
 
 public class insertNodeAtHead {
-    
 
-    //Making Node 
-    static class SinglyLinkedListNode{
+    static class SinglyLinkedListNode {
         public int data;
         public SinglyLinkedListNode next;
 
-        //Making Cons for insert data
-        public SinglyLinkedListNode(int data){
-            this.data = data;
+        public SinglyLinkedListNode(int nodeData) {
+            this.data = nodeData;
             this.next = null;
         }
-
     }
-    static class SinglyLinkedList{
-        //making head
+
+    static class SinglyLinkedList {
         public SinglyLinkedListNode head;
-        //making tail
         public SinglyLinkedListNode tail;
 
-        //making cons
-        SinglyLinkedList(){
+        public SinglyLinkedList() {
             this.head = null;
             this.tail = null;
         }
-        //making method for insert data
-        public void insertNode(int nodeData ){
-            SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
-
-            if(this.head == null){
-                this.head = node;
-            }else{
-                this.head.next = node;
-            }
-            this.tail = node;
-        }
-
-
+      
     }
 
-
-    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data) {
-        //int temp = data;
-        //llist.data = temp;
-        SinglyLinkedList ns = new SinglyLinkedList();
-         
-        if(llist == null){
-            llist = ns.head; 
-        }
-        llist.data =data;        
-
-        return llist;
-        
-
-    }
     public static void printLinkedList(SinglyLinkedListNode head) {
+       
+
         while (head != null) {
-            System.out.println( head.data);
+            System.out.print( head.data + " ");
             head = head.next;
         }
        
     }
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    // Complete the insertNodeAtHead function below.
 
-        int n = scan.nextInt();
+    /*
+     * For your reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data) {
+        
+        SinglyLinkedListNode ss = new SinglyLinkedListNode(data);
+        
+        ss.next = llist;
 
-        SinglyLinkedList node = new SinglyLinkedList();
+        return ss;
+        
 
-        for (int i = 0; i < n; i++) {
-            int temp = scan.nextInt();
-            SinglyLinkedListNode listHead = insertNodeAtHead(node.head , temp);
-            node.head = listHead;
+        /*
+        SinglyLinkedList sa = new SinglyLinkedList();
+        
+        if(llist == null){
+            llist = new SinglyLinkedListNode(data);
+            sa.head = llist;
+            return sa.head;
+        
         }
-        printLinkedList(node.head);
+        //SinglyLinkedListNode current = llist;
+        while (llist.next != null) {
+            llist = llist.next;
+        }
+        llist.next = new SinglyLinkedListNode(data);
+
+        return llist;
+        */
+
+    
+        //Complete this method
+        
+
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        SinglyLinkedList llist = new SinglyLinkedList();
+
+        int llistCount = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < llistCount; i++) {
+            int llistItem = scanner.nextInt();
+            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+          SinglyLinkedListNode llist_head = insertNodeAtHead(llist.head, llistItem);
+          llist.head = llist_head;
+        }
+        printLinkedList(llist.head);
     }
 }

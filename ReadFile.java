@@ -1,37 +1,30 @@
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
-public class migratioBirds {
-    public static void main(String[] args) {
-        InputStreamReader is = new InputStreamReader(System.in);
-        BufferedReader bs = new BufferedReader(is);
-        ArrayList<Integer> arr = new ArrayList<>();
+import dayCal.List;
 
+public class ReadFile {
+    public static void main(String[] args) throws IOException {
+        //BufferedReader bufReader = new BufferedReader(new FileReader("file.txt"));
+        Scanner s = new Scanner(new FileReader("file2.txt"));
+        ArrayList<Integer> listOfLines = new ArrayList<>();
 
-        String firstLine = null;
-        String secondLine = null;
-
-        try {
-            firstLine = bs.readLine();
-            secondLine = bs.readLine();
-        } catch (Exception e) {
-            //TODO: handle exception
-            e.printStackTrace();
+        while (s.hasNext()){
+            if(s.hasNextInt()){
+                listOfLines.add(s.nextInt());
+            } else {
+                s.next();
+            }
         }
-        String[] splitFirstLine = firstLine.split(" ");
-        int n = Integer.parseInt(splitFirstLine[0]);
-        String[] spitSecondLine = secondLine.split(" ");
-
-        for (int i = 0; i < n; i++) {
-            arr.add(Integer.parseInt(spitSecondLine[i]));
-        }
-        //System.out.println(arr.size());
-        System.out.println( migratoryBirds(arr));
-
+        System.out.println("Sizze " + listOfLines.size());
+        System.out.println("Result " + migratoryBirds(listOfLines));
     }
-    public static int migratoryBirds(List<Integer> arr) {
+    public static int migratoryBirds(ArrayList<Integer> arr) {
         
         // Write your code here
         int[] type = {1 , 2, 3, 4, 5};
@@ -81,4 +74,5 @@ public class migratioBirds {
         
         return tipe;
     }   
+
 }

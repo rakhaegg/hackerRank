@@ -17,8 +17,6 @@ public class DiagonalDifference {
     public static int di(int[][] arr){
         List<Integer> first = new ArrayList<>();
         List<Integer> second = new ArrayList<>();
-        int i  = 0 ;
-        int j  = 0;
         int xx = 0;
         
         for (int j2 = 0; j2 < arr.length; j2++) {
